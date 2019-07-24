@@ -52,6 +52,7 @@ public class MensajesEmpresaAUsuario {
 		By abrirSolicitudes = By.cssSelector("i[class= 'icon-header icon-header-nav-envelope']");
 		By abriruserMensaje = By.cssSelector("a[data-href= '/ureq.php?authsolic=20431581x09024d054081117da99a441&returnUrl=%2Fusers-mailbox.php%3Ffolder%3D1%26frmNPage%3D1%26TemasPagina%3D16%26txtSearch%3D']");
 		By EnviarMensajeUsuario = By.cssSelector("input[class='btn-flat red app-ureq-form-btn']");
+		By posibleModal = By.cssSelector("button[aria-hidden='true']");
 //		By posibleModal = By.xpath("//button[@class='close']");
 		
 
@@ -65,7 +66,7 @@ public class MensajesEmpresaAUsuario {
 		driver.findElement(UserEmpresa).sendKeys("empresaqa");
 		driver.findElement(PassEmpresa).sendKeys("000000");
 		driver.findElement(BtnEmpresaLogin).click();
-		By posibleModal = By.cssSelector("button[aria-hidden='true']");
+		
 		WebElement ModalAccion = driver.findElement(posibleModal);
 		if (ModalAccion.isDisplayed() && ModalAccion.isEnabled()) {
 			ModalAccion.click();
