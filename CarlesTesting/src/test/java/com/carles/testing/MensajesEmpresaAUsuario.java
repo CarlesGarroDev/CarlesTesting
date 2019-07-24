@@ -9,10 +9,14 @@ import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 public class MensajesEmpresaAUsuario {
 	private WebDriver driver;
+	
+	
+	
 
 	@Before
 	public void setUp() throws Exception {
@@ -32,7 +36,7 @@ public class MensajesEmpresaAUsuario {
 		By UserEmpresa = By.id("Login");
 		By PassEmpresa = By.id("Password");
 		By BtnEmpresaLogin = By.cssSelector("input[class='adminAccessLogin__submit']");
-		By CerrarModal = By.cssSelector("button[class='close white']");
+		//By CerrarModal = By.cssSelector("button[class='close white']");
 		By ClickMensajes = By.cssSelector("a[href='/emp-AdminSolicitudes.php']");
 		By SeleccionarUsuario = By.cssSelector("a[href='/emp-AdminSolicitudesShow.php?id_solicitud=20431581'");
 		By SeleccionarCampoMensaje = By.cssSelector("div[class='trumbowyg-editor']");
@@ -44,10 +48,15 @@ public class MensajesEmpresaAUsuario {
 		By campoEmailUsuario = By.id("Mail");
 		By campoPassword = By.id("Password");
 		By btnSubmit = By.cssSelector("button[class= 'btn-flat btn-flat--big red btn-full app-ua-track-event']");
-		By btnClose = By.cssSelector("button[type= 'button']");
+		//By btnClose = By.cssSelector("button[type= 'button']");
 		By abrirSolicitudes = By.cssSelector("i[class= 'icon-header icon-header-nav-envelope']");
 		By abriruserMensaje = By.cssSelector("a[data-href= '/ureq.php?authsolic=20431581x09024d054081117da99a441&returnUrl=%2Fusers-mailbox.php%3Ffolder%3D1%26frmNPage%3D1%26TemasPagina%3D16%26txtSearch%3D']");
 		By EnviarMensajeUsuario = By.cssSelector("input[class='btn-flat red app-ureq-form-btn']");
+//		By posibleModal = By.xpath("//button[@class='close']");
+		
+
+		
+
 		
 		
 		
@@ -56,8 +65,12 @@ public class MensajesEmpresaAUsuario {
 		driver.findElement(UserEmpresa).sendKeys("empresaqa");
 		driver.findElement(PassEmpresa).sendKeys("000000");
 		driver.findElement(BtnEmpresaLogin).click();
-		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-		driver.findElement(CerrarModal).click();
+		By posibleModal = By.cssSelector("button[aria-hidden='true']");
+		WebElement ModalAccion = driver.findElement(posibleModal);
+		if (ModalAccion.isDisplayed() && ModalAccion.isEnabled()) {
+			ModalAccion.click();
+		};
+		//driver.findElement(CerrarModal).click();
 		driver.findElement(ClickMensajes).click();
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		driver.findElement(SeleccionarUsuario).click();
