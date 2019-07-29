@@ -29,12 +29,14 @@ public class testIfLinksBroken {
 
 	@After
 	public void tearDown() throws Exception {
+		//driver.quit();
 	}
 
 	@Test
 	public void test() {
+		
 		String homePage = "https://pre66.matrimonios.cl/";
-		String PageATestear = "https://pre66.matrimonios.cl/proveedores";
+		String PageATestear = "https://pre66.matrimonios.cl/emp-Menu.php";
         String url = "";
         HttpURLConnection huc = null;
         int respCode = 200;
@@ -42,6 +44,26 @@ public class testIfLinksBroken {
         driver = new ChromeDriver();
         
         driver.manage().window().maximize();
+        driver.get("https://pre66.matrimonios.cl/emp-Acceso.php");
+        // LOGIN USUARIO
+        //By campoEmailUsuario = By.id("Mail");
+		//By campoPassword = By.id("Password");
+		//By btnSubmit = By.cssSelector("button[type= 'submit']");
+        
+        //LOGIN EMPRESA
+        By UserEmpresa = By.id("Login");
+		By PassEmpresa = By.id("Password");
+		By BtnEmpresaLogin = By.cssSelector("input[class='adminAccessLogin__submit']");
+		
+		//HACER LOGIN USUARIO
+		//driver.findElement(campoEmailUsuario).sendKeys("cgarro+1@bodas.net");
+		//driver.findElement(campoPassword).sendKeys("000000");
+		//driver.findElement(btnSubmit).click();
+		
+		//HACER LOGIN EMPRESA
+		driver.findElement(UserEmpresa).sendKeys("empresaqa");
+		driver.findElement(PassEmpresa).sendKeys("000000");
+		driver.findElement(BtnEmpresaLogin).click();
         
         driver.get(PageATestear);
         
