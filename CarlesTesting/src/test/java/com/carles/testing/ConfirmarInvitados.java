@@ -9,6 +9,9 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
+
+
+
 public class ConfirmarInvitados {
 	private WebDriver driver;
 
@@ -33,7 +36,7 @@ public class ConfirmarInvitados {
 		By campoUserPassword = By.id("Password");
 		By abrirMenuUser = By.cssSelector("img[class='avatar-thumb']");
 		By invitadoConfirmar = By.cssSelector("span[class='app-input-label input-select-label input-filled']");
-		By cambiarEstadoConfirmado = By.cssSelector("li[data-value='1']");
+	
 		By btnLogin = By.cssSelector("button[class='btn-flat btn-flat--big red btn-full app-ua-track-event']");
 		
 		
@@ -43,10 +46,12 @@ public class ConfirmarInvitados {
 		driver.findElement(btnLogin).click();
 		Thread.sleep(500);
 		driver.findElement(abrirMenuUser).click();
-		By irGuests = By.cssSelector("i[class='icon-header icon-header-dropdown-guest']");
+		By irGuests = By.cssSelector("a[href='https://www.weddingwire.ca/tools/Guests']");
 		driver.findElement(irGuests).click();
 		Thread.sleep(500);
 		driver.findElement(invitadoConfirmar).click();
+		Thread.sleep(1000);
+		By cambiarEstadoConfirmado = By.cssSelector("li[data-value='0']");
 		driver.findElement(cambiarEstadoConfirmado).click();
 		
 	}
