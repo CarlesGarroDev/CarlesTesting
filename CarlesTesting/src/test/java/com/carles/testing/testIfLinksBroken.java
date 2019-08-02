@@ -43,8 +43,9 @@ public class testIfLinksBroken {
 	public void test() throws InterruptedException {
 		
 		
-		String homePage = "https://www.casamentos.pt/";
-		String PageATestear = "https://www.casamentos.pt/album-casamento-wedshoots";
+		String homePage = "https://www.weddingwire.com/";
+		String PageATestear = "https://www.weddingwire.com/tools/Guests";
+		
         String url = "";
         HttpURLConnection huc = null;
         int respCode = 200;
@@ -52,19 +53,20 @@ public class testIfLinksBroken {
         driver = new ChromeDriver();
         
         driver.manage().window().maximize();
-        driver.get("https://www.casamentos.pt/users-login.php");
-     //LOGIN USUARIO
+ // ACCEDER PAGINA LOGIN SI ES NECESARIO HACER LOGIN ANTES DE TESTEAR
+        driver.get("https://www.weddingwire.com/users-login.php");
+ //LOGIN USUARIO
         By campoEmailUsuario = By.id("Mail");
 		By campoPassword = By.id("Password");
 		By btnSubmit = By.cssSelector("button[type= 'submit']");
-        
-     //LOGIN EMPRESA
+//        
+//LOGIN EMPRESA
       //  By UserEmpresa = By.id("Login");
 	//	By PassEmpresa = By.id("Password");
 	//	By BtnEmpresaLogin = By.cssSelector("input[class='adminAccessLogin__submit']");
 		
 		//HACER LOGIN USUARIO
-		driver.findElement(campoEmailUsuario).sendKeys("cgarro+1@bodas.net");
+		driver.findElement(campoEmailUsuario).sendKeys("cgarrobodas@gmail.com");
 		driver.findElement(campoPassword).sendKeys("000000");
 		driver.findElement(btnSubmit).click();
 		
@@ -74,7 +76,11 @@ public class testIfLinksBroken {
 		//driver.findElement(BtnEmpresaLogin).click();
         
         driver.get(PageATestear);
-        
+//    	By posibleModal = By.cssSelector("a[class='btn btn-flat red app-close-contest']");
+//    	WebElement ModalAccion = driver.findElement(posibleModal);
+//		if (ModalAccion.isDisplayed() && ModalAccion.isEnabled()) {
+//			ModalAccion.click();
+//		};
        //js.executeScript(intento.setAttribute("href", "https://www.tutorialrepublic.com"));
         
         List<WebElement> links = driver.findElements(By.tagName("a"));
@@ -82,18 +88,19 @@ public class testIfLinksBroken {
         Iterator<WebElement> it = links.iterator();
         
         while(it.hasNext()){
+
             
             url = it.next().getAttribute("href");
-            
-            System.out.println(url);
+            //SHOW URLS BEFORE VALIDATING
+            //System.out.println(url);
         
             if(url == null || url.isEmpty()){
-System.out.println("URL is either not configured for anchor tag or it is empty");
+            	System.out.println(url+" URL is either not configured for anchor tag or it is empty");
                 continue;
             }
             
             if(!url.startsWith(homePage)){
-                System.out.println("URL belongs to another domain, skipping it.");
+                System.out.println(url+" URL belongs to another domain, skipping it.");
                 continue;
             }
             
@@ -107,10 +114,10 @@ System.out.println("URL is either not configured for anchor tag or it is empty")
                 respCode = huc.getResponseCode();
                 
                 if(respCode >= 400){
-                    System.out.println(url+" is a broken link");
+                    System.out.println(url+" WARNING, this is a broken link");
                 }
                 else{
-                    System.out.println(url+" is a valid link");
+                    System.out.println(url+" FINE, this is a valid link");
                 }
                     
             } catch (MalformedURLException e) {
