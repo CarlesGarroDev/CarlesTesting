@@ -42,8 +42,8 @@ public class TestingIndividualFuncs {
 	}
 	
 	@Test
-	public void userSignInUsChrome() {
-		driver = new ChromeDriver();
+	public void userSignInUsFirefox() {
+		driver = new FirefoxDriver();
 		driver.manage().window().maximize();
 		WebDriverWait wait = new WebDriverWait(driver, 10);
 		driver.get("https://www.weddingwire.com/users-signup.php");
@@ -56,6 +56,7 @@ public class TestingIndividualFuncs {
 		By campoYear =  By.xpath("/html/body/div[11]/div[3]/table/tbody/tr/td/span[10]");
 		By campoMeses = By.xpath("/html/body/div[11]/div[2]/table/tbody/tr/td/span[12]");
 		By campoDias = By.xpath("/html/body/div[11]/div[1]/table/tbody/tr[5]/td[6]");
+		By btnSubmit = By.id("app-register-btn");
 		
 		driver.findElement(campoInsertarNombre).sendKeys("CarlesAutomateSignIn");
 		driver.findElement(campoInstertarEmail).sendKeys("cgarro+55@bodas.net");
@@ -64,7 +65,13 @@ public class TestingIndividualFuncs {
 		List<WebElement> allSuggestions = driver.findElements(campoSuggest);
 		//Iterator<WebElement> it = allSuggestions.iterator();
 		for (int i = 0; i < allSuggestions.size(); i++) {
-			
+			//wait.until(ExpectedConditions.elementToBeClickable(campoSuggest));
+			try {
+				Thread.sleep(3000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			allSuggestions.get(0).click();
 		}
 		driver.findElement(selectDatePicker).click();
@@ -77,6 +84,15 @@ public class TestingIndividualFuncs {
 		wait.until(ExpectedConditions.elementToBeClickable(campoDias));
 		driver.findElement(campoDias).click();
 		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+		
+		driver.findElement(btnSubmit).click();
+		 try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		 driver.quit();
 		
 		
 	}

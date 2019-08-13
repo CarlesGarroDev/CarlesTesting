@@ -41,7 +41,7 @@ public class UsRoutinesTry1 {
 		//driver.quit();
 	}
 	@Test
-	public void Page400Chrome() {
+	public void APage400Chrome() {
 
 		driver = new ChromeDriver();
 		driver.manage().window().maximize();
@@ -51,9 +51,17 @@ public class UsRoutinesTry1 {
 		driver.get("https://www.weddingwire.com/hasfkas");
 		assertEquals("Page not found - WeddingWire.com", driver.getTitle());
 		
+		try {
+			Thread.sleep(3000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		driver.quit();
+		
 	}
 	@Test
-	public void Page400Firefox() {
+	public void DPage400Firefox() {
 		
 		driver= new FirefoxDriver();
 		driver.manage().window().maximize();
@@ -62,10 +70,18 @@ public class UsRoutinesTry1 {
 	    
 		driver.get("https://www.weddingwire.com/hasfkas");
 		assertEquals("Page not found - WeddingWire.com", driver.getTitle());
+		
+		try {
+			Thread.sleep(3000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		driver.quit();
 	}
 	
 	@Test
-	public void noLoginSendRequestChrome(){
+	public void BnoLoginSendRequestChrome(){
 		
 		driver = new ChromeDriver();
 		driver.manage().window().maximize();
@@ -115,11 +131,19 @@ public class UsRoutinesTry1 {
 		
 		driver.findElement(botonRequest).click();
 		
+		try {
+			Thread.sleep(3000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		driver.quit();
+		
 	}
 	
 	
 	@Test
-	public void noLoginSendRequestFirefox() {
+	public void EnoLoginSendRequestFirefox() {
 		
 		driver = new FirefoxDriver();
 		driver.manage().window().maximize();
@@ -172,28 +196,169 @@ public class UsRoutinesTry1 {
 		
 		driver.findElement(botonRequest).click();
 		
+		try {
+			Thread.sleep(3000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		driver.quit();
+		
 	}
+	
 	@Test
-	public void userSignInUsChrome() {
+	public void CuserSignInUsChrome() {
+		driver = new ChromeDriver();
+		driver.manage().window().maximize();
+		WebDriverWait wait = new WebDriverWait(driver, 10);
 		driver.get("https://www.weddingwire.com/users-signup.php");
 		By campoInsertarNombre = By.name("Nombre");
 		By campoInstertarEmail = By.name("Mail");
 		By campoInstertarPassword = By.name("Password");
 		By campoInsertarCiudad = By.id("txtStrPoblacion");
+		By campoSuggest = By.id("StrPoblacion");
+		By selectDatePicker = By.name("Fecha");
+		By campoYear =  By.xpath("/html/body/div[11]/div[3]/table/tbody/tr/td/span[10]");
+		By campoMeses = By.xpath("/html/body/div[11]/div[2]/table/tbody/tr/td/span[12]");
+		By campoDias = By.xpath("/html/body/div[11]/div[1]/table/tbody/tr[5]/td[6]");
+		By btnSubmit = By.id("app-register-btn");
 		
 		driver.findElement(campoInsertarNombre).sendKeys("CarlesAutomateSignIn");
 		driver.findElement(campoInstertarEmail).sendKeys("cgarro+55@bodas.net");
 		driver.findElement(campoInstertarPassword).sendKeys("000000");
 		driver.findElement(campoInsertarCiudad).sendKeys("s");
-		List<WebElement> allSuggestions = driver.findElements(campoInsertarCiudad);
+		List<WebElement> allSuggestions = driver.findElements(campoSuggest);
 		//Iterator<WebElement> it = allSuggestions.iterator();
 		for (int i = 0; i < allSuggestions.size(); i++) {
 			
-			allSuggestions.get(2).click();
+			allSuggestions.get(0).click();
 		}
+		driver.findElement(selectDatePicker).click();
+		wait.until(ExpectedConditions.elementToBeClickable(campoYear));
+		driver.findElement(campoYear).click();
+		
+		wait.until(ExpectedConditions.elementToBeClickable(campoMeses));
+		driver.findElement(campoMeses).click();
+		
+		wait.until(ExpectedConditions.elementToBeClickable(campoDias));
+		driver.findElement(campoDias).click();
+		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+		
+		driver.findElement(btnSubmit).click();
+		
+		try {
+			Thread.sleep(3000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		driver.quit();
 		
 		
-		//driver.findElement(btnSubmit).click();
+	}
+	
+	
+	@Test
+	public void userSignInUsFirefox() {
+		driver = new FirefoxDriver();
+		driver.manage().window().maximize();
+		WebDriverWait wait = new WebDriverWait(driver, 10);
+		driver.get("https://www.weddingwire.com/users-signup.php");
+		By campoInsertarNombre = By.name("Nombre");
+		By campoInstertarEmail = By.name("Mail");
+		By campoInstertarPassword = By.name("Password");
+		By campoInsertarCiudad = By.id("txtStrPoblacion");
+		By campoSuggest = By.id("StrPoblacion");
+		By selectDatePicker = By.name("Fecha");
+		By campoYear =  By.xpath("/html/body/div[11]/div[3]/table/tbody/tr/td/span[10]");
+		By campoMeses = By.xpath("/html/body/div[11]/div[2]/table/tbody/tr/td/span[12]");
+		By campoDias = By.xpath("/html/body/div[11]/div[1]/table/tbody/tr[5]/td[6]");
+		By btnSubmit = By.id("app-register-btn");
+		
+		driver.findElement(campoInsertarNombre).sendKeys("CarlesAutomateSignIn");
+		driver.findElement(campoInstertarEmail).sendKeys("cgarro+55@bodas.net");
+		driver.findElement(campoInstertarPassword).sendKeys("000000");
+		driver.findElement(campoInsertarCiudad).sendKeys("s");
+		List<WebElement> allSuggestions = driver.findElements(campoSuggest);
+		//Iterator<WebElement> it = allSuggestions.iterator();
+		for (int i = 0; i < allSuggestions.size(); i++) {
+			//wait.until(ExpectedConditions.elementToBeClickable(campoSuggest));
+			try {
+				Thread.sleep(3000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			allSuggestions.get(0).click();
+		}
+		driver.findElement(selectDatePicker).click();
+		wait.until(ExpectedConditions.elementToBeClickable(campoYear));
+		driver.findElement(campoYear).click();
+		
+		wait.until(ExpectedConditions.elementToBeClickable(campoMeses));
+		driver.findElement(campoMeses).click();
+		
+		wait.until(ExpectedConditions.elementToBeClickable(campoDias));
+		driver.findElement(campoDias).click();
+		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+		
+		driver.findElement(btnSubmit).click();
+		 try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		 driver.quit();
+		
+		
+	}
+	
+	@Test
+	public void GLoginChrome(){
+		driver = new ChromeDriver();
+		driver.manage().window().maximize();
+		WebDriverWait wait = new WebDriverWait(driver, 10);
+		driver.get("https://www.weddingwire.com/users-login.php");
+		By campoEmailUsuario = By.id("Mail");
+		By campoPassword = By.id("Password");
+		By btnSubmit = By.cssSelector("button[type= 'submit']");
+		
+		driver.findElement(campoEmailUsuario).sendKeys("cgarro+55@bodas.net");
+		driver.findElement(campoPassword).sendKeys("000000");
+		driver.findElement(btnSubmit).click();
+		
+		try {
+			Thread.sleep(3000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		driver.quit();
+		
+	}
+	
+	@Test
+	public void HLoginFirefox(){
+		driver = new FirefoxDriver();
+		driver.manage().window().maximize();
+		WebDriverWait wait = new WebDriverWait(driver, 10);
+		driver.get("https://www.weddingwire.com/users-login.php");
+		By campoEmailUsuario = By.id("Mail");
+		By campoPassword = By.id("Password");
+		By btnSubmit = By.cssSelector("button[type= 'submit']");
+		
+		driver.findElement(campoEmailUsuario).sendKeys("cgarro+55@bodas.net");
+		driver.findElement(campoPassword).sendKeys("000000");
+		driver.findElement(btnSubmit).click();
+		
+		try {
+			Thread.sleep(3000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		driver.quit();
 		
 	}
 
