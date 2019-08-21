@@ -19,6 +19,7 @@ import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Iterator;
 import java.util.List;
@@ -360,6 +361,183 @@ public class UsRoutinesTry1 {
 		}
 		driver.quit();
 		
+	}
+	
+	@Test
+	public void GoogleSignInFirefox() throws InterruptedException {
+		driver = new FirefoxDriver();
+		driver.manage().window().maximize();
+		WebDriverWait wait = new WebDriverWait(driver, 10);
+		By btnAccesoGoogle = By.xpath("//*[@id=\"app-signup-layer-content\"]/div[1]/div/button[2]");
+		
+		
+		driver.get("https://www.weddingwire.com/users-signup.php");
+		Thread.sleep(1500);
+		driver.findElement(btnAccesoGoogle).click();
+		Thread.sleep(1500);
+		//Get current
+		String winHandle = driver.getWindowHandle();
+		
+		//Get List of windows
+		ArrayList pestañas = new ArrayList (driver.getWindowHandles());
+		System.out.println(pestañas.size());
+		
+		//Use the list to get the position and move to it
+		driver.switchTo().window((String) pestañas.get(1));
+	
+		By campoEmailGoogle = By.cssSelector("input[type='email']");
+		By btnNextToPass = By.cssSelector("span[class='RveJvd snByac']");
+		By campoPassGoogle = By.cssSelector("input[type='password']");
+		By posibleModal = By.xpath("//*[@id=\"app-common-layer\"]/div/div/div[1]/button");
+		By cerrarModalRef = By.xpath("//*[@id=\"formVicularCuenta\"]/div[1]/div[2]/div/button");
+		
+		driver.findElement(campoEmailGoogle).sendKeys("cgarrobodas@gmail.com");
+		driver.findElement(btnNextToPass).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(campoPassGoogle));
+		driver.findElement(campoPassGoogle).sendKeys("uni-5001");
+		driver.findElement(btnNextToPass).click();
+		driver.switchTo().window((String) pestañas.get(0));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(cerrarModalRef));
+		WebElement ModalAccion = driver.findElement(posibleModal);
+		if (ModalAccion.isDisplayed() && ModalAccion.isEnabled()) {
+			ModalAccion.click();
+		};
+		
+		try {
+			Thread.sleep(3000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		driver.quit();
+		
+		
+			}
+	@Test
+	public void GoogleSignInChrome() throws InterruptedException {
+		driver = new ChromeDriver();
+		driver.manage().window().maximize();
+		WebDriverWait wait = new WebDriverWait(driver, 10);
+		By btnAccesoGoogle = By.xpath("//*[@id=\"app-signup-layer-content\"]/div[1]/div/button[2]");
+		
+		
+		driver.get("https://www.weddingwire.com/users-signup.php");
+		Thread.sleep(1500);
+		driver.findElement(btnAccesoGoogle).click();
+		Thread.sleep(1500);
+		//Get current
+		String winHandle = driver.getWindowHandle();
+		
+		//Get List of windows
+		ArrayList pestañas = new ArrayList (driver.getWindowHandles());
+		System.out.println(pestañas.size());
+		
+		//Use the list to get the position and move to it
+		driver.switchTo().window((String) pestañas.get(1));
+	
+		By campoEmailGoogle = By.cssSelector("input[type='email']");
+		By btnNextToPass = By.cssSelector("span[class='RveJvd snByac']");
+		By campoPassGoogle = By.cssSelector("input[type='password']");
+		By posibleModal = By.xpath("//*[@id=\"app-common-layer\"]/div/div/div[1]/button");
+		By cerrarModalRef = By.xpath("//*[@id=\"formVicularCuenta\"]/div[1]/div[2]/div/button");
+		
+		driver.findElement(campoEmailGoogle).sendKeys("cgarrobodas@gmail.com");
+		driver.findElement(btnNextToPass).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(campoPassGoogle));
+		driver.findElement(campoPassGoogle).sendKeys("uni-5001");
+		driver.findElement(btnNextToPass).click();
+		driver.switchTo().window((String) pestañas.get(0));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(cerrarModalRef));
+		WebElement ModalAccion = driver.findElement(posibleModal);
+		if (ModalAccion.isDisplayed() && ModalAccion.isEnabled()) {
+			ModalAccion.click();
+		};
+		
+		try {
+			Thread.sleep(3000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		driver.quit();
+		
+		
+			}
+	
+	@Test
+	public void vendorSignInChrome() {
+		driver = new ChromeDriver();
+		driver.manage().window().maximize();
+		WebDriverWait wait = new WebDriverWait(driver, 10);
+		driver.get("https://www.weddingwire.com/vendors/home");
+		
+		By CompanyName = By.name("company");
+		By PostalCode = By.name("zip_code");
+		Select selectCategory = new Select (driver.findElement(By.name("Category__c")));
+		By btnNextVendors = By.xpath("//*[@id=\"app-contact-form\"]/form/div/div[1]/div[7]/button");
+		By firstName = By.name("first_name");
+		By lastName = By.name("last_name");
+		By phoneNum = By.name("phone");
+		By mailVendor = By.name("email");
+		By btnGetInTouch = By.xpath("//*[@id=\"app-contact-form\"]/form/div/div[2]/div[12]/button");
+		
+		driver.findElement(CompanyName).sendKeys("Empresa CarlesQA");
+		driver.findElement(PostalCode).sendKeys("08012");
+		selectCategory.selectByIndex(5);
+		driver.findElement(btnNextVendors).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(firstName));
+		driver.findElement(firstName).sendKeys("Carles");
+		driver.findElement(lastName).sendKeys("CarlQA");
+		driver.findElement(phoneNum).sendKeys("999888777");
+		driver.findElement(mailVendor).sendKeys("cgarrobodas@gmail.com");
+		driver.findElement(btnGetInTouch).click();
+		
+		try {
+			Thread.sleep(3000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		driver.quit();
+		
+	}
+	
+	@Test
+	public void vendorSignInFirefox() {
+		driver = new FirefoxDriver();
+		driver.manage().window().maximize();
+		WebDriverWait wait = new WebDriverWait(driver, 10);
+		driver.get("https://www.weddingwire.com/vendors/home");
+		
+		By CompanyName = By.name("company");
+		By PostalCode = By.name("zip_code");
+		Select selectCategory = new Select (driver.findElement(By.name("Category__c")));
+		By btnNextVendors = By.xpath("//*[@id=\"app-contact-form\"]/form/div/div[1]/div[7]/button");
+		By firstName = By.name("first_name");
+		By lastName = By.name("last_name");
+		By phoneNum = By.name("phone");
+		By mailVendor = By.name("email");
+		By btnGetInTouch = By.xpath("//*[@id=\"app-contact-form\"]/form/div/div[2]/div[12]/button");
+		
+		driver.findElement(CompanyName).sendKeys("Empresa CarlesQA");
+		driver.findElement(PostalCode).sendKeys("08012");
+		selectCategory.selectByIndex(5);
+		driver.findElement(btnNextVendors).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(firstName));
+		driver.findElement(firstName).sendKeys("Carles");
+		driver.findElement(lastName).sendKeys("CarlQA");
+		driver.findElement(phoneNum).sendKeys("999888777");
+		driver.findElement(mailVendor).sendKeys("cgarrobodas@gmail.com");
+		driver.findElement(btnGetInTouch).click();
+		
+		
+		try {
+			Thread.sleep(3000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		driver.quit();
 	}
 
 

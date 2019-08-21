@@ -45,7 +45,7 @@ public class testIfLinksBroken {
 		
 		
 		String homePage = "https://www.weddingwire.com/";
-		String PageATestear = "https://www.weddingwire.com/wedding-websites.html";
+		String PageATestear = "https://www.weddingwire.com/";
 		
         String url = "";
         HttpURLConnection huc = null;
