@@ -8,6 +8,7 @@ import java.util.List;
 
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -39,10 +40,11 @@ public class writeAReviewPhotos {
 	}
 
 	@Test
-	public void postReviewFirefox(){
+	
+		public void postReviewFirefox(){
 		driver = new FirefoxDriver();
 		driver.manage().window().maximize();
-		WebDriverWait wait = new WebDriverWait(driver, 10);
+		WebDriverWait wait = new WebDriverWait(driver, 60);
 		driver.get("https://www.weddingwire.com/users-login.php");
 		By campoEmailUsuario = By.id("Mail");
 		By campoPassword = By.id("Password");
@@ -119,6 +121,17 @@ public class writeAReviewPhotos {
 		}else {
 			driver.findElement(posibleModal).click();
 		}   */
+		try {
+			if (wait.until(ExpectedConditions.visibilityOfElementLocated(posibleModal)) == null) {
+				System.out.println("No modal or alert is present");
+			}else {
+				driver.findElement(posibleModal).click();
+			}
+			
+		} catch (Exception e) {
+			System.out.println("No aparece niguna modal!");
+		}
+		
 		
 		wait.until(ExpectedConditions.visibilityOfElementLocated(fotoComprobarProceso));
 		
@@ -130,10 +143,11 @@ public class writeAReviewPhotos {
 	}
 	
 	@Test
+	
 	public void postReviewChrome(){
 		driver = new ChromeDriver();
 		driver.manage().window().maximize();
-		WebDriverWait wait = new WebDriverWait(driver, 10);
+		WebDriverWait wait = new WebDriverWait(driver, 60);
 		driver.get("https://www.weddingwire.com/users-login.php");
 		By campoEmailUsuario = By.id("Mail");
 		By campoPassword = By.id("Password");
@@ -187,6 +201,16 @@ public class writeAReviewPhotos {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(fotoSubida));
 		driver.findElement(btnPost).click();
 		try {
+			if (wait.until(ExpectedConditions.visibilityOfElementLocated(posibleModal)) == null) {
+				System.out.println("No modal or alert is present");
+			}else {
+				driver.findElement(posibleModal).click();
+			}
+			
+		} catch (Exception e) {
+			System.out.println("No aparece niguna modal!");
+		}
+/*		try {
 			Thread.sleep(5000);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
@@ -197,6 +221,8 @@ public class writeAReviewPhotos {
 		}else {
 			driver.findElement(posibleModal).click();
 		}
+		
+		*/
 		
 		
 		wait.until(ExpectedConditions.visibilityOfElementLocated(fotoComprobarProceso));
