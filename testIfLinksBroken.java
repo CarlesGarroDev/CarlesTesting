@@ -44,8 +44,8 @@ public class testIfLinksBroken {
 	public void test() throws InterruptedException {
 		
 		
-		String homePage = "https://www.weddingwire.com/";
-		String PageATestear = "https://www.weddingwire.com/";
+		String homePage = "https://pre83.casamiento.com.uy/";
+		String PageATestear = "https://pre83.casamiento.com.uy/";
 		
         String url = "";
         HttpURLConnection huc = null;

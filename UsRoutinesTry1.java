@@ -6,6 +6,7 @@ import java.util.concurrent.TimeUnit;
 
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.ElementNotInteractableException;
@@ -32,8 +33,9 @@ public class UsRoutinesTry1 {
 
 	@Before
 	public void setUp() throws Exception {
-		System.setProperty("webdriver.chrome.driver", "./src/test/resources/chromedriver/chromedriver.exe");
-		System.setProperty("webdriver.chrome.driver", "./src/test/resources/chromedrivernew/chromedriver.exe");
+		//System.setProperty("webdriver.chrome.driver", "./src/test/resources/chromedriver/chromedriver.exe");
+		//System.setProperty("webdriver.chrome.driver", "./src/test/resources/chromedrivernew/chromedriver.exe");
+		System.setProperty("webdriver.chrome.driver", "./src/test/resources/chromedriver78/chromedriver.exe");
 		System.setProperty("webdriver.gecko.driver", "./src/test/resources/firefoxdriver/geckodriver.exe");
 	}
 
@@ -127,7 +129,7 @@ public class UsRoutinesTry1 {
 			Select finalistaRoles = new Select(driver.findElement(selectRol));
 			finalistaRoles.selectByVisibleText("Groom");
 		}
-		driver.findElement(messageArea).sendKeys("Cambiar para la notificacion Lorem Ipsum has been the industry's standard dummy text ever since the 1500s");
+		driver.findElement(messageArea).sendKeys("···>> 26/2019 lorem daily changes whats played has been the industry's standard dummy text ever since the 1500s");
 	
 		
 		driver.findElement(botonRequest).click();
@@ -193,7 +195,7 @@ public class UsRoutinesTry1 {
 			finalistaRoles.selectByVisibleText("Groom");
 		}
 		
-		driver.findElement(messageArea).sendKeys("Otro cambio para ver notificaciones en Lorem Ipsum has been the industry's standard dummy text ever since the 1500s");
+		driver.findElement(messageArea).sendKeys("···>> 26/11/2019 changes to change it more changes to test push notifications!! en Lorem Ipsum has been the industry's standard dummy text ever since the 1500s");
 		
 		driver.findElement(botonRequest).click();
 		
@@ -540,11 +542,12 @@ public class UsRoutinesTry1 {
 		driver.quit();
 	}
 	@Test
+	@Ignore
 	
 	public void postReviewFirefox(){
 	driver = new FirefoxDriver();
 	driver.manage().window().maximize();
-	WebDriverWait wait = new WebDriverWait(driver, 60);
+	WebDriverWait wait = new WebDriverWait(driver, 180);
 	driver.get("https://www.weddingwire.com/users-login.php");
 	By campoEmailUsuario = By.id("Mail");
 	By campoPassword = By.id("Password");
@@ -643,11 +646,11 @@ public class UsRoutinesTry1 {
 }
 
 @Test
-
+@Ignore
 public void postReviewChrome(){
 	driver = new ChromeDriver();
 	driver.manage().window().maximize();
-	WebDriverWait wait = new WebDriverWait(driver, 60);
+	WebDriverWait wait = new WebDriverWait(driver, 180);
 	driver.get("https://www.weddingwire.com/users-login.php");
 	By campoEmailUsuario = By.id("Mail");
 	By campoPassword = By.id("Password");
@@ -676,6 +679,8 @@ public void postReviewChrome(){
 	driver.findElement(btnSubmit).click();
 	wait.until(ExpectedConditions.visibilityOfElementLocated(comprobarLogin));
 	driver.get("https://www.weddingwire.com/shared/rate/new?vid=4b7ebd73d077039c");
+	//var estrellitaExtra = document.getElementById("");
+	//estrellitaExtra.scrollIntoView(true);
 	driver.findElement(estrellita1).click();
 	driver.findElement(estrellita2).click();
 	driver.findElement(estrellita3).click();
@@ -733,6 +738,107 @@ public void postReviewChrome(){
 	
 
 }
+@Test
+public void mapLayerTestFirefox() throws InterruptedException {
+	driver = new FirefoxDriver();
+	driver.manage().window().maximize();
+	WebDriverWait wait = new WebDriverWait(driver, 10);
+	driver.manage().deleteAllCookies();
+
+	
+	driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+	
+	
+	driver.get("https://www.weddingwire.com/shared/search?group_id=2&showmode=map&page=1&userSearch=1");
+	
+	By filterMap = By.xpath("//*[@id=\"app-vendors-search-filters\"]/div/form/div/div[1]/div/div[2]/ul/li[5]");
+	By filterPageNext = By.xpath("//*[@id=\"search-results\"]/div/div[2]/ul/li[11]/a");
+	By confirmTitle = By.xpath("//*[@id=\"app-vendors-search-filters\"]/div/form/div/div[2]/div/div/ul/li/div[2]/ul/li[2]/div");
+	
+	driver.findElement(filterMap).click();
+	Thread.sleep(3000);
+	driver.findElement(filterPageNext).click();
+	Thread.sleep(3000);
+	
+	//assertTrue(ExpectedConditions.visibilityOfElementLocated(locator));
+	//wait.until(ExpectedConditions.visibilityOfElementLocated(confirmTitle));
+	
+	assertEquals("Wedding Planner & Wedding Coordinator - WeddingWire - Page 2", driver.getTitle());
+	
+	driver.quit();
+	
+}
+@Test
+public void mapLayerTestChrome() throws InterruptedException {
+	driver = new ChromeDriver();
+	driver.manage().window().maximize();
+	WebDriverWait wait = new WebDriverWait(driver, 10);
+	driver.manage().deleteAllCookies();
+
+	
+	driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+	
+	
+	driver.get("https://www.weddingwire.com/shared/search?group_id=2&showmode=map&page=1&userSearch=1");
+	
+	By filterMap = By.xpath("//*[@id=\"app-vendors-search-filters\"]/div/form/div/div[1]/div/div[2]/ul/li[5]");
+	By filterPageNext = By.xpath("//*[@id=\"search-results\"]/div/div[2]/ul/li[11]/a");
+	By confirmTitle = By.xpath("//*[@id=\"app-vendors-search-filters\"]/div/form/div/div[2]/div/div/ul/li/div[2]/ul/li[2]/div");
+	
+	driver.findElement(filterMap).click();
+	Thread.sleep(3000);
+	driver.findElement(filterPageNext).click();
+	Thread.sleep(3000);
+	
+	//assertTrue(ExpectedConditions.visibilityOfElementLocated(locator));
+	//wait.until(ExpectedConditions.visibilityOfElementLocated(confirmTitle));
+	
+	assertEquals("Wedding Planner & Wedding Coordinator - WeddingWire - Page 2", driver.getTitle());
+	//Wedding Planner & Wedding Coordinator - WeddingWire - Page 2
+	driver.quit();
+	
+}
+@Test
+public void landingsChrome() {
+	driver = new ChromeDriver();
+	driver.manage().window().maximize();
+	WebDriverWait wait = new WebDriverWait(driver, 60);
+	driver.get("https://www.weddingwire.com/landings");
+	
+	By searchBox = By.id("txtStrSearch");
+	By endTestValidate = By.className("mb15");	
+	By endTest2 = By.className("storefrontSearchResult__title");
+	
+	driver.findElement(searchBox).sendKeys("Jelwery Glam");
+	driver.findElement(searchBox).submit();
+	
+	wait.until(ExpectedConditions.visibilityOfElementLocated(endTest2));
+	
+	assertEquals("Weddings, Wedding - WeddingWire.com", driver.getTitle());
+	driver.quit();
+}
+
+
+@Test
+public void landingsFirefox() {
+driver = new FirefoxDriver();
+driver.manage().window().maximize();
+WebDriverWait wait = new WebDriverWait(driver, 60);
+driver.get("https://www.weddingwire.com/landings");
+
+By searchBox = By.id("txtStrSearch");
+By endTestValidate = By.className("mb15");
+By endTest2 = By.className("storefrontSearchResult__title");
+
+driver.findElement(searchBox).sendKeys("Jelwery Glam");
+driver.findElement(searchBox).submit();
+
+wait.until(ExpectedConditions.visibilityOfElementLocated(endTest2));
+
+assertEquals("Weddings, Wedding - WeddingWire.com", driver.getTitle());
+driver.quit();
+}
+
 
 
 }
