@@ -23,8 +23,8 @@ public class testIfLinksBroken {
 
 	@Before
 	public void setUp() throws Exception {
-		System.setProperty("webdriver.chrome.driver", "./src/test/resources/chromedriver/chromedriver.exe");
-		System.setProperty("webdriver.firefox.driver", "./src/test/resources/chromedriver/chromedriver.exe");
+		System.setProperty("webdriver.chrome.driver", "./src/test/resources/chromedriver78/chromedriver.exe");
+		System.setProperty("webdriver.gecko.driver", "./src/test/resources/firefoxdriver/geckodriver.exe");
 		
 	}
 
@@ -44,8 +44,8 @@ public class testIfLinksBroken {
 	public void test() throws InterruptedException {
 		
 		
-		String homePage = "https://pre83.casamiento.com.uy/";
-		String PageATestear = "https://pre83.casamiento.com.uy/";
+		String homePage = "https://pre75.weddingwire.co.uk/";
+		String PageATestear = "https://pre75.weddingwire.co.uk/";
 		
         String url = "";
         HttpURLConnection huc = null;

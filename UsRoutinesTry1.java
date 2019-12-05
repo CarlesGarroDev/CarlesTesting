@@ -129,7 +129,7 @@ public class UsRoutinesTry1 {
 			Select finalistaRoles = new Select(driver.findElement(selectRol));
 			finalistaRoles.selectByVisibleText("Groom");
 		}
-		driver.findElement(messageArea).sendKeys("···>> 26/2019 lorem daily changes whats played has been the industry's standard dummy text ever since the 1500s");
+		driver.findElement(messageArea).sendKeys("..··..·>> 05/12/2019 lorem daily changes whats played has been the industry's standard dummy text ever since the 1500s");
 	
 		
 		driver.findElement(botonRequest).click();
@@ -195,7 +195,7 @@ public class UsRoutinesTry1 {
 			finalistaRoles.selectByVisibleText("Groom");
 		}
 		
-		driver.findElement(messageArea).sendKeys("···>> 26/11/2019 changes to change it more changes to test push notifications!! en Lorem Ipsum has been the industry's standard dummy text ever since the 1500s");
+		driver.findElement(messageArea).sendKeys("..··..>> 05/12/2019 changes to change it more changes to test push notifications!! en Lorem Ipsum has been the industry's standard dummy text ever since the 1500s");
 		
 		driver.findElement(botonRequest).click();
 		
@@ -391,7 +391,7 @@ public class UsRoutinesTry1 {
 		By btnNextToPass = By.cssSelector("span[class='RveJvd snByac']");
 		By campoPassGoogle = By.cssSelector("input[type='password']");
 		By posibleModal = By.xpath("//*[@id=\"app-common-layer\"]/div/div/div[1]/button");
-		By cerrarModalRef = By.xpath("//*[@id=\"formVicularCuenta\"]/div[1]/div[2]/div/button");
+		By cerrarModalRef = By.xpath("//*[@id=\"formVicularCuenta\"]/div[1]/div[2]/button");
 		
 		driver.findElement(campoEmailGoogle).sendKeys("cgarrobodas@gmail.com");
 		driver.findElement(btnNextToPass).click();
@@ -421,28 +421,29 @@ public class UsRoutinesTry1 {
 		driver.manage().window().maximize();
 		WebDriverWait wait = new WebDriverWait(driver, 10);
 		By btnAccesoGoogle = By.xpath("//*[@id=\"app-signup-layer-content\"]/div[1]/div/button[2]");
-		
-		
+
 		driver.get("https://www.weddingwire.com/users-signup.php");
 		Thread.sleep(1500);
 		driver.findElement(btnAccesoGoogle).click();
 		Thread.sleep(1500);
-		//Get current
+		// Get current
 		String winHandle = driver.getWindowHandle();
-		
-		//Get List of windows
-		ArrayList pestañas = new ArrayList (driver.getWindowHandles());
+
+		// Get List of windows
+		ArrayList pestañas = new ArrayList(driver.getWindowHandles());
 		System.out.println(pestañas.size());
-		
-		//Use the list to get the position and move to it
+
+		// Use the list to get the position and move to it
 		driver.switchTo().window((String) pestañas.get(1));
-	
+
 		By campoEmailGoogle = By.cssSelector("input[type='email']");
 		By btnNextToPass = By.cssSelector("span[class='RveJvd snByac']");
 		By campoPassGoogle = By.cssSelector("input[type='password']");
+		// By posibleModal =
+		// By.xpath("//*[@id=\"app-common-layer\"]/div/div/div[1]/button");
 		By posibleModal = By.xpath("//*[@id=\"app-common-layer\"]/div/div/div[1]/button");
-		By cerrarModalRef = By.xpath("//*[@id=\"formVicularCuenta\"]/div[1]/div[2]/div/button");
-		
+		By cerrarModalRef = By.xpath("//*[@id=\"formVicularCuenta\"]/div[1]/div[2]/button");
+
 		driver.findElement(campoEmailGoogle).sendKeys("cgarrobodas@gmail.com");
 		driver.findElement(btnNextToPass).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(campoPassGoogle));
@@ -453,8 +454,9 @@ public class UsRoutinesTry1 {
 		WebElement ModalAccion = driver.findElement(posibleModal);
 		if (ModalAccion.isDisplayed() && ModalAccion.isEnabled()) {
 			ModalAccion.click();
-		};
-		
+		}
+		;
+
 		try {
 			Thread.sleep(3000);
 		} catch (InterruptedException e) {
@@ -462,9 +464,8 @@ public class UsRoutinesTry1 {
 			e.printStackTrace();
 		}
 		driver.quit();
-		
-		
-			}
+
+	}
 	
 	@Test
 	public void vendorSignInChrome() {
